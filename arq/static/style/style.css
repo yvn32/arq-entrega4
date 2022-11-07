@@ -1,0 +1,51 @@
+.color1 {color: #ede6db;}
+.color2 {color: #8fbdd3;}
+.color3 {color: #a2b38b;}
+.color4 {color: #9d5353;}
+.color5 {color: #e9d5da;}
+
+.bg-color1 {background-color: #ede6db;}
+.bg-color2 {background-color: #8fbdd3;}
+.bg-color3 {background-color: #a2b38b;}
+.bg-color4 {background-color: #9d5353;}
+.bg-color5 {background-color: #e9d5da;}
+
+.border-color1 {background-color: #ede6db;}
+.border-color2 {background-color: #8fbdd3;}
+.border-color3 {background-color: #a2b38b;}
+.border-color4 {background-color: #9d5353;}
+.border-color5 {background-color: #e9d5da;}
+
+.btn-registro {
+    color: #9d5353; background-color: #ede6db; border-color: #9d5353;
+    margin-right: 5px; margin-bottom: 5px;
+    border-width: 1.5px;
+}
+.btn-cuentaLogueada {
+    margin-right: 5px; margin-bottom: 5px;
+}
+.btn-login {
+    color: white; background-color: #9d5353;
+    margin-right: 5px; margin-bottom: 5px;
+}
+.btn-ingresar {
+    color: white; background-color: #9d5353;
+    width: 300px;
+    align-content: center; align-items: center;
+}
+.btn-cerrar {
+    color: #9d5353; background-color: white; border-color: #9d5353;
+    border-width: 1.5px;
+    width: 300px;
+}
+.side-label {
+    width: 45px;
+}
+.btn-agregar {
+    color: white; background-color: #8fbdd3;
+    margin-right: 5px; margin-bottom: 5px;
+    width: 300px;
+}
+.img-peq {
+    width: 300px;
+}

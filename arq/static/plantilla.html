@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
+    rel="stylesheet" 
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="stylesheet" href= "{% static 'style/style.css' %}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>Compara y Gana</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-color2">
+            <div class="container-fluid">
+              <a class="navbar-brand" style="font-weight: 700" href="/"><i class="fa-sharp fa-solid fa-bag-shopping color4" style="margin-right: 10px;"></i>Compara y Gana</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Inicio</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/productos/">Productos</a>
+                  </li>
+                  {% if user.is_authenticated %}
+                  <!-- Solo mostrar mantenedor a persona logueada --> 
+                  <li class="nav-item">
+                    <a class="nav-link" href="/mantenedor/">Mantenedor</a>
+                  </li>
+                  {% endif %}
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Dropdown
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                  </li>
+                </ul>
+
+                {% if user.is_authenticated %}
+                <!-- Mostrar cuenta logueada -->          
+                <form class="d-flex" id="" action="">
+                  <a class="btn btn-registro" id="btn-nav"><i class="fa-solid fa-user" style="margin-right: 5px;"></i>{{ user }}</a>
+                </form>
+                {% else %}   
+                <!-- >>> Botón para registro de cuentas -->
+                <form class="d-flex" id="registrar">
+                  <button type="btn" class="btn btn-registro">Registrarme</button>
+                </form>      
+                {% endif %}
+
+                {% if user.is_authenticated %}
+                <!-- >>> Botón para salir -->
+                <form class="d-flex">
+                  <a href="/logout" class="btn btn-login" id="btn-nav">Salir</a>
+                </form>
+                {% else %}
+                <!-- >>> Botón para login -->
+                <form class="d-flex">
+                  <a class="btn btn-login" id="btn-nav" data-toggle="modal" data-target="#loginModal">Login</a>
+                </form>
+
+                  {% for msje in messages %}
+                    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+                    {% if msje.tags == 'info' %}
+                    <script>
+                      $(document).ready(function() {
+                        $("#loginModal").modal('show');
+                      });
+                      // var m = "{{ msje }}";
+                      // swal("Página bloqueada", m);
+                    </script>
+                    {% elif msje.tags == 'error' %}
+                    <script>
+                      var m = "{{ msje }}";
+                      swal("Credenciales inválidas", m);
+                    </script>
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+
+              </div>
+            </div>
+          </nav>
+    </header>
+   
+    {% block content %}
+    {% endblock %}
+
+    {% include 'login.html' %}
+
+    <footer class="bg-color1 text-center">
+      <div class="container p-4">
+        <section class="mb-4">
+          <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-twitter"></i
+          ></a>
+          <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-google"></i
+          ></a>
+          <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+          <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-github"></i
+          ></a>
+        </section>
+        <section class="">
+          <form action="">
+            <div class="row d-flex justify-content-center">
+              <div class="col-auto">
+                <p class="pt-2">
+                  <strong>Suscríbete a nuestro newsletter</strong>
+                </p>
+              </div>
+              <div class="col-md-5 col-12">
+                <div class="form-outline form-white mb-4">
+                  <input type="email" id="form5Example21" class="form-control" />
+                  <label class="form-label" for="form5Example21">Correo electrónico</label>
+                </div>
+              </div>
+              <div class="col-auto">
+                <button type="submit" class="btn btn-outline-dark mb-4" style="border-width: 1.5px;">
+                  Suscribirme
+                </button>
+              </div>
+            </div>
+          </form>
+        </section>
+        <section class="mb-4">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum
+            repellat quaerat voluptatibus placeat nam, commodi optio pariatur est quia magnam
+            eum harum corrupti dicta, aliquam sequi voluptate quas.
+          </p>
+        </section>
+      </div>
+      <div class="text-center p-3 bg-color2" style="color: white">
+        © 2022 Copyright:
+        <a style="color: white" href="/">comparaygana.cl</a>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+{% extends "plantilla.html" %}
+{% load static %}
+{% block content %}
+
+<!-- <div>
+    <table>
+        <tr>
+          <th>ID</th>
+          <th>NOMBRE PRODUCTO</th>
+          <th>DESCRIPCION PRODUCTO</th>
+        </tr>
+        {% for p in productos %}
+        <tr>
+          <td>{{p.id}}</td>
+          <td>{{p.nombre}}</td>
+          <td>{{p.descripcion}}</td>
+        </tr>
+        {% endfor %}
+    </table>   
+</div> -->
+
+<div class="container" style="padding-bottom: 20px;">
+
+  <div style="margin-top: 15px;  text-align: center;">
+    <h1>¡Bienvenid@ terrícola!</h1>
+    <h3 class="color4" style="font-weight: bold;">Encuentra los mejores precios del planeta en un solo click</h3>
+  </div>
+
+  <div class="row">
+    {% for p in productos %}
+    <div class="col-12 col-sm-6 col-lg-3" style="margin-top: 15px;">
+      <div class="card" style="width: 18rem;">
+        <img src="{{p.rutaimg}}" class="card-img-top" style="margin-top: 15px;">
+        <div class="card-body">
+          <h5 class="card-title">{{p.nombre}}</h5>
+          <p class="card-text">{{p.descripcion}}</p>
+          <h3 class="color4" style="font-weight: bold; margin-bottom: 10px;">$ {{p.precio}}</h3>
+          <a href="#" class="btn btn-primary">Agregar al carrito</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+</div>
+
+{% endblock %}

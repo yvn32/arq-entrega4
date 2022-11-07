@@ -1,0 +1,28 @@
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" style="width: 350px;">
+      <div class="modal-content" style="align-items: center;">
+        <h5 class="text-center mt-3">Inicio de sesión</h5>
+        <form action="/login_user" method="POST" autocomplete="off">
+            <div class="modal-body">
+                {% csrf_token %}
+                <div class="input-group mb-3">
+                    <span class="btn input-group-text border-secondary bg-light side-label">
+                        <i class="fas fa-user-alt"></i>
+                    </span>
+                    <input type="text" class="form-control" name="username" placeholder="Correo">
+                </div>
+                <div class="input-group">
+                    <span class="btn input-group-text border-secondary bg-light side-label">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                    <input type="password" class="form-control" name="password" placeholder="Contraseña">
+                </div>
+            </div>
+            <div class="container d-grid gap-2 mt-4 mb-4">
+                <button type="submit" class="btn btn-ingresar">Ingresar</button>
+                <button type="button" class="btn btn-cerrar" data-dismiss="modal">Cerrar</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>

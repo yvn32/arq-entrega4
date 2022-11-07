@@ -1,0 +1,66 @@
+{% extends "plantilla.html" %}
+{% load static %}
+{% block content %}
+
+<section class="container-fluid">
+    <div>
+        <h1 class="w-100" style="text-align: center; margin-top: 20px;">Mantenedor de productos</h1>
+    </div>
+</section>
+
+<section class="container-fluid" style="padding: 40px;">
+    <div class="table-responsive">
+        <table class="table table-sm">
+            <thead>
+            <tr>
+                <th scope="col">Id prod.</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Precio dcto.</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Id empresa</th>
+                <th scope="col">Imagen</th>
+                <th scope="col">
+                    <a href="/crearProducto">
+                      <button type="button" class="btn btn-success" style="background-color: #8fbdd3; border-color: #8fbdd3;"><i class="fa-solid fa-square-plus"></i></button>
+                  </a>
+                </th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% for p in productos %}
+                <tr>
+                    <th scope="row">{{p.id}}</th>
+                    <td>{{p.nombre}}</td>
+                    <td>{{p.descripcion}}</td>
+                    <td>${{p.precio}}</td>
+                    <td>${{p.preciodcto}}</td>
+                    {% if p.stock < 1 %}
+                    <td style="color: red; font-weight: bold;">{{p.stock}}</td>
+                    {% else %}
+                    <td>{{p.stock}}</td>
+                    {% endif %}
+                    <td>{{p.idempresa}}</td>
+                    <td>
+                        <img src="{{p.rutaimg}}" style="width: 150px;">
+                    </td>
+                    <td>
+                        <a href="/eliminarProducto/{{p.id}}">
+                            <button type="button" class="btn btn-success" style="background-color: #9d5353; border-color: #9d5353;"><i class="fa-solid fa-trash-can"></i></button>
+                        </a>
+                    </td>
+                    <td>
+                      <a href="/modificarProducto/{{p.id}}">
+                        <button type="button" class="btn btn-success" style="background-color: #a2b38b; border-color: #a2b38b;"><i class="fa-solid fa-pen-to-square"></i></button>
+                    </a>
+                  </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+{% endblock %}
