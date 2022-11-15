@@ -1,4 +1,5 @@
 import http
+import json
 from tkinter import N
 from tkinter.messagebox import NO
 from django.shortcuts import render, redirect
@@ -74,7 +75,17 @@ def mantenedor(request):
 
 # CREAR PRODUCTO
 def crearProducto(request):
-    print('Pendiente armar la función crearProducto')
+    payload = {
+        "nombre": "Producto genérico-Lenovo IdeaPad Gaming 3 15ARH05 [82EY0017CL]",
+        "descripcion": "Procesador: AMD Ryzen 5 4600H; RAM: 8 GB DDR4; Pantalla: LED 15.6\"; Almacenamiento: SSD 512GB; Tarjetas de video: AMD Radeon RX Vega 6 (Integrada), NVIDIA GeForce GTX 1650 (4 GB)",
+        "precio": 520000,
+        "preciodcto": 0,
+        "stock": 3,
+        "idempresa": 1,
+        "rutaimg": "https://media.solotodo.com/media/cache/0d/be/0dbe0b8c0f460367cb613c731c99373b.png"
+    }
+    res = requests.post('http://127.0.0.1:8000/api/productos/', data=json.dumps(payload))
+    print('Respuesta: ', res.status_code)
     return redirect('/mantenedor')
 
 # MODIFICAR PRODUCTO
